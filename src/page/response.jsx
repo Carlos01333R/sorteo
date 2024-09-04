@@ -43,18 +43,23 @@ const PaymentDetails = () => {
 
   return (
     <div className="container mx-auto p-4">
+      <a href="http://localhost:5173/">Home</a>
       <h1 className="text-2xl font-bold">Detalles del Pago {refPayco}</h1>
       {paymentDetails ? (
         <div>
           <p>
-            <strong>ID de Transacción:</strong> {paymentDetails.transactionId}
+            <strong>ID de Transacción:</strong> {paymentDetails.Referencia}
           </p>
           <p>
-            <strong>Estado:</strong> {paymentDetails.status}
+            <strong>Fecha:</strong> {paymentDetails.Fecha}
           </p>
           <p>
-            <strong>Mensaje:</strong> {paymentDetails.message}
+            <strong>Estado:</strong> {paymentDetails.Respuesta}
           </p>
+          <p>
+            <strong>Monto:</strong> {paymentDetails.Total}
+          </p>
+
           {/* Muestra otros detalles necesarios aquí */}
         </div>
       ) : (
