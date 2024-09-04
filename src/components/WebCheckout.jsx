@@ -16,7 +16,7 @@ const EpaycoCheckout = () => {
       country: "CO",
       lang: "es",
       // Redirección en caso de éxito
-      responseUrl: "https://porfoliocarlos.vercel.app/",
+      responseUrl: "https://sorteopy.vercel.app/response",
       // Redirección en caso de error
       confirmationUrl: "http://yourwebsite.com/error",
       // Opcional: agregar una imagen
