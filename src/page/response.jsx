@@ -43,7 +43,7 @@ const PaymentDetails = () => {
 
   return (
     <div className="container mx-auto p-4">
-      <h1 className="text-2xl font-bold">Detalles del Pago</h1>
+      <h1 className="text-2xl font-bold">Detalles del Pago {refPayco}</h1>
       {paymentDetails ? (
         <div>
           <p>
