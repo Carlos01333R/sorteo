@@ -31,6 +31,7 @@ const EpaycoCheckout = ({
             <ModalBody>
               <section className="w-full flex flex-col items-center justify-center gap-2">
                 <h2 className="text-3xl font-raleway-black">Sorteo moto</h2>
+
                 <p className="p-2 px-5 bg-transparent border-2 border-green-500 rounded-lg">
                   {valueRaffle}
                 </p>

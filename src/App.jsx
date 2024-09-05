@@ -1,10 +1,9 @@
-//import EpaycoCheckout from "./components/WebCheckout";
-import Raffle from "./components/Raffe";
+import Sorteos from "./components/sorteos";
 function App() {
   return (
     <>
-      <section className="w-full h-auto flex flex-col items-center justify-center gap-2">
-        <Raffle price={5000} />
+      <section className="w-[95%] md:max-w-[1300px] h-auto flex flex-col items-center justify-center gap-2">
+        <Sorteos />
       </section>
     </>
   );

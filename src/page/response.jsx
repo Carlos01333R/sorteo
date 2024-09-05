@@ -1,4 +1,3 @@
-// src/pages/PaymentDetails.js
 import { useEffect, useState } from "react";
 import { useLocation } from "react-router-dom";
 import Api from "../hook/Api";
@@ -7,15 +6,19 @@ const PaymentDetails = () => {
   const [paymentDetails, setPaymentDetails] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+  const [sorteoName, setSorteoName] = useState(""); // Estado para almacenar el nombre del sorteo
   const { supabase } = Api(); // Supabase instance from your Api hook
   const location = useLocation();
 
   // Obtén la referencia del query string
   const queryParams = new URLSearchParams(location.search);
   const refPayco = queryParams.get("ref_payco");
+  const nombreSorteo = queryParams.get("nombre"); // Obtén el nombre del sorteo de la URL
 
   useEffect(() => {
     if (refPayco) {
+      setSorteoName(nombreSorteo); // Establece el nombre del sorteo en el estado
+
       const fetchPaymentDetails = async () => {
         try {
           const response = await fetch(
@@ -48,7 +51,7 @@ const PaymentDetails = () => {
       setError("Referencia de pago no proporcionada");
       setLoading(false);
     }
-  }, [refPayco]);
+  }, [refPayco, nombreSorteo]); // Agrega `nombreSorteo` a las dependencias
 
   // Función para guardar los detalles del pago en la base de datos
   const savePaymentDetails = async (details) => {
@@ -61,6 +64,7 @@ const PaymentDetails = () => {
         targeta: details.x_cardnumber,
         numero: details.x_description,
         email: details.x_customer_email,
+        nombre_sorteo: sorteoName, // Guarda el nombre del sorteo
         // Agrega otros campos según lo necesites
       },
     ]);
