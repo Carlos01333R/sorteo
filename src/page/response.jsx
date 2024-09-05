@@ -60,12 +60,11 @@ const PaymentDetails = () => {
         id: details.x_transaction_id,
         fecha: details.x_fecha_transaccion,
         estado: details.x_respuesta,
+        nombre_sorteo: sorteoName,
         monto: details.x_amount,
         targeta: details.x_cardnumber,
         numero: details.x_description,
         email: details.x_customer_email,
-        nombre_sorteo: sorteoName, // Guarda el nombre del sorteo
-        // Agrega otros campos según lo necesites
       },
     ]);
 
@@ -84,6 +83,7 @@ const PaymentDetails = () => {
       <h1 className="text-2xl font-bold">Detalles del Pago {refPayco}</h1>
       {paymentDetails ? (
         <div>
+          <p>Nombre del Sorteo: {paymentDetails.nombre_sorteo}</p>
           <p>
             <strong>ID de Transacción:</strong>{" "}
             {paymentDetails.x_transaction_id}
