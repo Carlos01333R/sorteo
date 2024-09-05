@@ -60,7 +60,7 @@ const PaymentDetails = () => {
         id: details.x_transaction_id,
         fecha: details.x_fecha_transaccion,
         estado: details.x_respuesta,
-        nombre_sorteo: sorteoName,
+        nombre_sorteo: details.x_extra1,
         monto: details.x_amount,
         targeta: details.x_cardnumber,
         numero: details.x_description,

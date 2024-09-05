@@ -38,9 +38,9 @@ const Raffle = ({ price, nombre }) => {
       amount: price, // Monto en COP (o la moneda que uses)
       currency: "COP",
       country: "CO",
+      extra1: nombre,
       lang: "es",
-      responseUrl: `https://sorteopy.vercel.app/response?nombre=${encodeURIComponent(
-        nombre
+      responseUrl: `https://sorteopy.vercel.app/response
       )}`, // Agrega el nombre del sorteo aquí
       confirmationUrl: "http://yourwebsite.com/error", // Cambiar a la URL de error correcta
       image: "http://yourwebsite.com/logo.png", // Opcional: agregar una imagen
