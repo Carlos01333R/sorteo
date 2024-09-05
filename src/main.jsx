@@ -4,6 +4,7 @@ import App from "./App.jsx";
 import "./index.css";
 import PaymentDetails from "./page/response.jsx";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import { NextUIProvider } from "@nextui-org/react";
 
 const router = createBrowserRouter([
   {
@@ -18,6 +19,8 @@ const router = createBrowserRouter([
 
 createRoot(document.getElementById("root")).render(
   <StrictMode>
-    <RouterProvider router={router} />
+    <NextUIProvider>
+      <RouterProvider router={router} />
+    </NextUIProvider>
   </StrictMode>
 );

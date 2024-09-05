@@ -1,11 +1,13 @@
 // src/pages/PaymentDetails.js
 import { useEffect, useState } from "react";
 import { useLocation } from "react-router-dom";
+import Api from "../hook/Api";
 
 const PaymentDetails = () => {
   const [paymentDetails, setPaymentDetails] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+  const { supabase } = Api(); // Supabase instance from your Api hook
   const location = useLocation();
 
   // Obtén la referencia del query string
@@ -27,6 +29,10 @@ const PaymentDetails = () => {
           // Verificar si la respuesta contiene los datos esperados
           if (data.success && data.data) {
             setPaymentDetails(data.data);
+            // Solo guarda los detalles si la respuesta es "Aceptada"
+            if (data.data.x_respuesta === "Aceptada") {
+              await savePaymentDetails(data.data); // Guarda los detalles en la base de datos
+            }
           } else {
             setError("No se encontraron detalles para esta referencia.");
           }
@@ -43,6 +49,27 @@ const PaymentDetails = () => {
       setLoading(false);
     }
   }, [refPayco]);
+
+  // Función para guardar los detalles del pago en la base de datos
+  const savePaymentDetails = async (details) => {
+    const { error } = await supabase.from("sorteos").insert([
+      {
+        id: details.x_transaction_id,
+        fecha: details.x_fecha_transaccion,
+        estado: details.x_respuesta,
+        monto: details.x_amount,
+        targeta: details.x_cardnumber,
+        descripcion: details.x_description,
+        email: details.x_customer_email,
+        // Agrega otros campos según lo necesites
+      },
+    ]);
+
+    if (error) {
+      console.error("Error al guardar los detalles del pago:", error.message);
+      setError("Error al guardar los detalles del pago.");
+    }
+  };
 
   if (loading) return <p>Cargando...</p>;
   if (error) return <p>Error: {error}</p>;

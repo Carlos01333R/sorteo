@@ -1,64 +1,62 @@
+/* eslint-disable react/prop-types */
 // src/components/EpaycoCheckout.js
+import {
+  Modal,
+  ModalContent,
+  ModalBody,
+  ModalFooter,
+  Button,
+} from "@nextui-org/react";
 
-const EpaycoCheckout = () => {
-  const handlePayment = () => {
-    const epayco = window.ePayco;
-
-    // Configuración de la transacción
-    const data = {
-      // Tu public_key de Epayco
-      key: "58a0150cf636cce288eabb215dfb5fa8",
-      // Datos de la transacción
-      name: "Product Name",
-      description: "Product Description",
-      amount: "10000", // Monto en COP (o la moneda que uses)
-      currency: "COP",
-      country: "CO",
-      lang: "es",
-      // Redirección en caso de éxito
-      responseUrl: "https://sorteopy.vercel.app/response",
-      // Redirección en caso de error
-      confirmationUrl: "http://yourwebsite.com/error",
-      // Opcional: agregar una imagen
-      image: "http://yourwebsite.com/logo.png",
-    };
-
-    epayco.checkout.configure({
-      key: data.key,
-      test: true,
-    });
-
-    epayco.checkout.open(data);
-  };
-
+const EpaycoCheckout = ({
+  isOpen,
+  onOpenChange,
+  valueRaffle,
+  price,
+  handlePayment,
+}) => {
   return (
-    <>
-      <section
-        style={{
-          width: "300px",
-          height: "auto",
-          display: "flex",
-          flexDirection: "column",
-          justifyContent: "center",
-          alignItems: "center",
-          margin: "0 auto",
-          border: "1px solid #ccc",
-          padding: "20px",
-          borderRadius: "15px",
-          gap: "10px",
-          marginTop: "20px",
-        }}
-      >
-        <img
-          src="https://www.puertadelnorte.com/wp-content/uploads/2021/11/imagen-sorteo-noviembre-puerta-del-norte.jpg"
-          alt="carro"
-          width="100%"
-        />
-        <button onClick={handlePayment} className="btn btn-primary">
-          Pagar con Epayco
-        </button>
-      </section>
-    </>
+    <Modal
+      backdrop="opaque"
+      isOpen={isOpen}
+      onOpenChange={onOpenChange}
+      classNames={{
+        backdrop:
+          "bg-gradient-to-t from-zinc-900 to-zinc-900/10 backdrop-opacity-20",
+      }}
+    >
+      <ModalContent>
+        {(onClose) => (
+          <>
+            <ModalBody>
+              <section className="w-full flex flex-col items-center justify-center gap-2">
+                <h2 className="text-3xl font-raleway-black">Sorteo moto</h2>
+                <p className="p-2 px-5 bg-transparent border-2 border-green-500 rounded-lg">
+                  {valueRaffle}
+                </p>
+                <p className="border-2 border-black bg-transparent p-2 rounded-lg">
+                  Valor a pagar: {price}
+                </p>
+              </section>
+            </ModalBody>
+            <ModalFooter>
+              <Button color="danger" variant="light" onPress={onClose}>
+                Cerrar
+              </Button>
+              <Button
+                color="primary"
+                onPress={() => {
+                  onClose();
+                  handlePayment();
+                }}
+              >
+                Pagar
+              </Button>
+            </ModalFooter>
+          </>
+        )}
+      </ModalContent>
+    </Modal>
   );
 };
 

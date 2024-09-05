@@ -1,18 +1,10 @@
-import EpaycoCheckout from "./components/WebCheckout";
+//import EpaycoCheckout from "./components/WebCheckout";
+import Raffle from "./components/Raffe";
 function App() {
   return (
     <>
-      <section
-        style={{
-          width: "100%",
-          height: "auto",
-          display: "flex",
-          justifyContent: "center",
-          alignItems: "center",
-          margin: "0 auto",
-        }}
-      >
-        <EpaycoCheckout />
+      <section className="w-full h-auto flex flex-col items-center justify-center gap-2">
+        <Raffle price={5000} />
       </section>
     </>
   );
