@@ -59,7 +59,7 @@ const PaymentDetails = () => {
         estado: details.x_respuesta,
         monto: details.x_amount,
         targeta: details.x_cardnumber,
-        descripcion: details.x_description,
+        numero: details.x_description,
         email: details.x_customer_email,
         // Agrega otros campos según lo necesites
       },
