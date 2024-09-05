@@ -6,27 +6,36 @@ import EpaycoCheckout from "./WebCheckout";
 import Api from "../hook/Api";
 
 const Raffle = ({ price, nombre }) => {
-  const [valueRaffle, setValueRaffle] = useState(null); // Estado para almacenar el número seleccionado
+  const [selectedRaffles, setSelectedRaffles] = useState([]); // Estado para almacenar múltiples números seleccionados
   const { countries } = Api(); // Datos que vienen de la API
   const { isOpen, onOpen, onOpenChange } = useDisclosure();
 
   // Filtrar los números ocupados solo para el sorteo actual por `nombre_sorteo`
   const occupiedNumbers = countries
     .filter((country) => country.nombre_sorteo === nombre) // Filtrar por nombre del sorteo
-    .map((country) => String(country.numero).padStart(3, "0")); // Convertir a formato de 3 dígitos
+    .flatMap((country) =>
+      country.numero.split(",").map((num) => num.trim().padStart(3, "0"))
+    ); // Convertir los números a formato de 3 dígitos, manejando múltiples números
 
   // Generar el array de números del 001 al 100, excluyendo los que ya están en occupiedNumbers
   const raffleNumbers = Array.from({ length: 100 }, (_, index) => {
     return String(index + 1).padStart(3, "0");
-  }).filter((number) => !occupiedNumbers.includes(number));
+  }).filter((number) => !occupiedNumbers.includes(number)); // Excluir los números ocupados
 
-  // Función para manejar la selección del número
+  // Función para manejar la selección de números
   const handleSelectNumber = (number) => {
-    setValueRaffle((prev) => (prev === number ? null : number)); // Permite deseleccionar si se vuelve a clicar el mismo número
-    onOpen(); // Abre el modal al seleccionar un número
+    setSelectedRaffles((prevSelected) => {
+      if (prevSelected.includes(number)) {
+        // Si el número ya está seleccionado, lo elimina
+        return prevSelected.filter((raffle) => raffle !== number);
+      } else {
+        // Si no está seleccionado, lo agrega
+        return [...prevSelected, number];
+      }
+    });
   };
 
-  // Redirige a la página de detalles del pago con el nombre del sorteo y la referencia de pago
+  // Función para manejar el pago con los números seleccionados
   const handlePayment = () => {
     const epayco = window.ePayco;
 
@@ -34,14 +43,13 @@ const Raffle = ({ price, nombre }) => {
     const data = {
       key: "58a0150cf636cce288eabb215dfb5fa8", // Tu public_key de Epayco
       name: nombre,
-      description: valueRaffle,
-      amount: price, // Monto en COP (o la moneda que uses)
+      description: selectedRaffles.join(", "), // Muestra los números seleccionados
+      amount: price * selectedRaffles.length, // Calcula el monto total basado en la cantidad de números seleccionados
       currency: "COP",
       country: "CO",
       extra1: nombre,
       lang: "es",
-      responseUrl: `https://sorteopy.vercel.app/response
-      )}`, // Agrega el nombre del sorteo aquí
+      responseUrl: "https://sorteopy.vercel.app/response", // Agrega el nombre del sorteo aquí
       confirmationUrl: "http://yourwebsite.com/error", // Cambiar a la URL de error correcta
       image: "http://yourwebsite.com/logo.png", // Opcional: agregar una imagen
     };
@@ -63,7 +71,7 @@ const Raffle = ({ price, nombre }) => {
             key={number}
             className={`p-3 border-2 rounded-lg cursor-pointer transition-all 
             ${
-              valueRaffle === number
+              selectedRaffles.includes(number)
                 ? "bg-[#d0d0d0] border-blue-500"
                 : "bg-[#f0f0f0] border-[#ccc]"
             } 
@@ -73,13 +81,13 @@ const Raffle = ({ price, nombre }) => {
           </Button>
         ))}
       </div>
-      {valueRaffle && (
+      {selectedRaffles.length > 0 && (
         <>
           <EpaycoCheckout
             isOpen={isOpen}
             onOpenChange={onOpenChange}
-            valueRaffle={valueRaffle}
-            price={price}
+            valueRaffle={selectedRaffles.join(", ")} // Muestra los números seleccionados
+            price={price * selectedRaffles.length} // Calcular el monto total
             handlePayment={handlePayment}
           />
         </>
@@ -91,6 +99,9 @@ const Raffle = ({ price, nombre }) => {
             <li key={country.id}>{country.numero}</li>
           ))}
       </ul>
+
+      <p>numeros seleccionados: {selectedRaffles.join(", ")}</p>
+      <button onClick={onOpen}>Pagar</button>
     </>
   );
 };
