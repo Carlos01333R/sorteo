@@ -220,7 +220,7 @@ const PaymentDetails = () => {
 
                   {paymentDetails.x_respuesta !== "Aceptada" && (
                     <section className="w-full mt-5 border-2 border-red-500 bg-transparent rounded-lg p-3 flex flex-col justify-center items-center">
-                      <p>
+                      <p className="w-[90%]">
                         Si el estado de la transacción es Pendiende. Copia su
                         Referencia de pago:{" "}
                         <span className="font-raleway-black">{refPayco}</span> y
