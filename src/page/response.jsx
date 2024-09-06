@@ -15,7 +15,6 @@ const PaymentDetails = () => {
   // Obtén la referencia del query string
   const queryParams = new URLSearchParams(location.search);
   const refPayco = queryParams.get("ref_payco");
-  const nombreSorteo = queryParams.get("nombre"); // Obtén el nombre del sorteo de la URL
 
   useEffect(() => {
     if (refPayco) {
@@ -52,7 +51,7 @@ const PaymentDetails = () => {
       setError("Referencia de pago no proporcionada");
       setLoading(false);
     }
-  }, [refPayco, nombreSorteo]); // Agrega `nombreSorteo` a las dependencias
+  }, [refPayco]); // Agrega `nombreSorteo` a las dependencias
 
   // Función para guardar los detalles del pago en la base de datos
 
@@ -120,7 +119,7 @@ const PaymentDetails = () => {
             </section>
             <section className="w-full justify-center items-center flex flex-col gap-2 mt-5">
               <article className="w-[95%] md:w-[40%] border-2 border-black bg-transparent  rounded-lg p-3 flex flex-col  justify-center items-center mb-20">
-                <div className="flex flex-col justify-start items-start gap-2">
+                <div className="flex flex-col justify-start items-start gap-2 w-full truncate">
                   <p className="font-raleway-regular">
                     Detalles del Pago:{" "}
                     <span className="font-raleway-black ">{refPayco}</span>
@@ -196,7 +195,7 @@ const PaymentDetails = () => {
                   <p className="font-raleway-regular">
                     Cliente:
                     <span className="font-raleway-black ml-2">
-                      {paymentDetails.x_customer_name}{" "}
+                      {paymentDetails.x_customer_lastname}{" "}
                       {paymentDetails.x_customer_lastname}
                     </span>
                   </p>
