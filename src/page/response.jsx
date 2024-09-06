@@ -22,7 +22,7 @@ const PaymentDetails = () => {
       const fetchPaymentDetails = async () => {
         try {
           const response = await fetch(
-            `https://secure.epayco.co/validation/v1/reference/20ee87a0460f121acfe6eda7`
+            `https://secure.epayco.co/validation/v1/reference/${refPayco}`
           );
           if (!response.ok) {
             throw new Error("Network response was not ok");
