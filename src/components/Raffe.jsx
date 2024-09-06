@@ -60,7 +60,7 @@ const Raffle = ({ price, nombre, imagen, description }) => {
       extra3: description,
       lang: "es",
       responseUrl: "https://sorteopy.vercel.app/response", // Agrega el nombre del sorteo aquí
-      confirmationUrl: "http://yourwebsite.com/error", // Cambiar a la URL de error correcta
+      confirmationUrl: "https://sorteopy.vercel.app/response", // Cambiar a la URL de error correcta
       image: "http://yourwebsite.com/logo.png", // Opcional: agregar una imagen
     };
 
