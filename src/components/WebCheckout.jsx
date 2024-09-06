@@ -14,6 +14,8 @@ const EpaycoCheckout = ({
   valueRaffle,
   price,
   handlePayment,
+  nombre,
+  imagen,
 }) => {
   return (
     <Modal
@@ -30,20 +32,20 @@ const EpaycoCheckout = ({
           <>
             <ModalBody>
               <section className="w-full flex flex-col items-center justify-center gap-2">
-                <h2 className="text-3xl font-raleway-black">Sorteo moto</h2>
+                <h2 className="text-3xl font-raleway-black text-center">
+                  Sorteo {nombre}
+                </h2>
 
+                <img src={imagen} alt="" />
+                <h2 className="font-raleway-black text-center">
+                  Tus numeros a participar
+                </h2>
                 <p className="p-2 px-5 bg-transparent border-2 border-green-500 rounded-lg">
                   {valueRaffle}
-                </p>
-                <p className="border-2 border-black bg-transparent p-2 rounded-lg">
-                  Valor a pagar: {price}
                 </p>
               </section>
             </ModalBody>
             <ModalFooter>
-              <Button color="danger" variant="light" onPress={onClose}>
-                Cerrar
-              </Button>
               <Button
                 color="primary"
                 onPress={() => {
@@ -51,7 +53,10 @@ const EpaycoCheckout = ({
                   handlePayment();
                 }}
               >
-                Pagar
+                Pagar: {price}
+              </Button>
+              <Button color="danger" variant="light" onPress={onClose}>
+                Cerrar
               </Button>
             </ModalFooter>
           </>

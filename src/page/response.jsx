@@ -6,7 +6,7 @@ const PaymentDetails = () => {
   const [paymentDetails, setPaymentDetails] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
-  const [sorteoName, setSorteoName] = useState(""); // Estado para almacenar el nombre del sorteo
+
   const { supabase } = Api(); // Supabase instance from your Api hook
   const location = useLocation();
 
@@ -17,8 +17,6 @@ const PaymentDetails = () => {
 
   useEffect(() => {
     if (refPayco) {
-      setSorteoName(nombreSorteo); // Establece el nombre del sorteo en el estado
-
       const fetchPaymentDetails = async () => {
         try {
           const response = await fetch(

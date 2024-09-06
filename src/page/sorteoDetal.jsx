@@ -1,5 +1,7 @@
 // src/pages/SorteoDetal.js
 import Raffle from "../components/Raffe";
+import Header from "../components/Header";
+import Hero from "../components/Hero";
 import { useParams } from "react-router-dom";
 import ApiSorteo from "../hook/Apisorteo";
 
@@ -20,9 +22,24 @@ export default function SorteoDetal() {
   const sorteo = FIlterIdSorteo[0];
 
   return (
-    <section className="w-full h-auto flex flex-col items-center justify-center gap-2">
-      {/* Asegúrate de que el precio exista antes de pasarlo al componente */}
-      <Raffle price={sorteo.precio} nombre={sorteo.nombre} />
-    </section>
+    <>
+      <header className="w-full mb-20">
+        <Header />
+      </header>
+      <main className="w-full">
+        <section className="w-full h-auto flex flex-col items-center justify-center gap-2">
+          <Hero
+            nombre={sorteo.nombre}
+            imagen={sorteo.imagen}
+            description={sorteo.description}
+          />
+          <Raffle
+            price={sorteo.precio}
+            nombre={sorteo.nombre}
+            imagen={sorteo.imagen}
+          />
+        </section>
+      </main>
+    </>
   );
 }

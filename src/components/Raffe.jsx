@@ -2,13 +2,17 @@
 import { useState } from "react";
 import { Button } from "@nextui-org/react";
 import { useDisclosure } from "@nextui-org/react";
+import Preview from "./icon/IconPreview";
+import Next from "./icon/IconNext";
 import EpaycoCheckout from "./WebCheckout";
 import Api from "../hook/Api";
 
-const Raffle = ({ price, nombre }) => {
+const Raffle = ({ price, nombre, imagen }) => {
   const [selectedRaffles, setSelectedRaffles] = useState([]); // Estado para almacenar múltiples números seleccionados
   const { countries } = Api(); // Datos que vienen de la API
   const { isOpen, onOpen, onOpenChange } = useDisclosure();
+  const [currentPage, setCurrentPage] = useState(1); // Estado para la página actual
+  const pageSize = 50; // Tamaño de cada página
 
   // Filtrar los números ocupados solo para el sorteo actual por `nombre_sorteo`
   const occupiedNumbers = countries
@@ -21,6 +25,10 @@ const Raffle = ({ price, nombre }) => {
   const raffleNumbers = Array.from({ length: 100 }, (_, index) => {
     return String(index + 1).padStart(3, "0");
   }).filter((number) => !occupiedNumbers.includes(number)); // Excluir los números ocupados
+
+  // Calcular los números a mostrar en la página actual
+  const startIndex = (currentPage - 1) * pageSize;
+  const currentNumbers = raffleNumbers.slice(startIndex, startIndex + pageSize);
 
   // Función para manejar la selección de números
   const handleSelectNumber = (number) => {
@@ -62,18 +70,54 @@ const Raffle = ({ price, nombre }) => {
     epayco.checkout.open(data);
   };
 
+  // Función para agregar un número aleatorio
+  const handleAddRandomNumber = () => {
+    // Filtrar solo los números disponibles que aún no están seleccionados
+    const availableNumbers = raffleNumbers.filter(
+      (number) => !selectedRaffles.includes(number)
+    );
+    if (availableNumbers.length > 0) {
+      const randomNumber =
+        availableNumbers[Math.floor(Math.random() * availableNumbers.length)];
+      handleSelectNumber(randomNumber);
+    }
+  };
+
+  // Función para limpiar todos los números seleccionados
+  const handleClearSelection = () => {
+    setSelectedRaffles([]);
+  };
+
+  // Función para manejar la página siguiente
+  const handleNextPage = () => {
+    if (startIndex + pageSize < raffleNumbers.length) {
+      setCurrentPage(currentPage + 1);
+    }
+  };
+
+  // Función para manejar la página anterior
+  const handlePrevPage = () => {
+    if (currentPage > 1) {
+      setCurrentPage(currentPage - 1);
+    }
+  };
+
   return (
     <>
-      <div className="grid grid-cols-10 gap-2 mt-10">
-        {raffleNumbers.map((number) => (
+      <section className="w-full flex flex-col justify-center items-center mt-5">
+        <h2 className="font-raleway-black text-3xl">Escoge tu Numero</h2>
+        <p>Puedes escoger uno o mas numeros</p>
+      </section>
+      <div className="grid grid-cols-7 gap-2 mt-10">
+        {currentNumbers.map((number) => (
           <Button
             onPress={() => handleSelectNumber(number)} // Utilizar la función para actualizar el estado
             key={number}
-            className={`p-3 border-2 rounded-lg cursor-pointer transition-all 
+            className={`p-3 border-2 rounded-lg cursor-pointer transition-all shadow-lg 
             ${
               selectedRaffles.includes(number)
-                ? "bg-[#d0d0d0] border-blue-500"
-                : "bg-[#f0f0f0] border-[#ccc]"
+                ? "bg-[#6cfa84] border-[#08df48]"
+                : "bg-[#fff] border-[#2E3844]"
             } 
             text-black`}
           >
@@ -81,6 +125,40 @@ const Raffle = ({ price, nombre }) => {
           </Button>
         ))}
       </div>
+      <div className="flex justify-center space-x-4 mt-4 items-center">
+        <button
+          className=" text-black p-2 rounded-lg"
+          onClick={handlePrevPage}
+          disabled={currentPage === 1}
+        >
+          <Preview />
+        </button>
+        <span className="text-sm font-raleway-black">{`Pág ${currentPage}`}</span>
+        <button
+          className=" text-black p-2 rounded-lg"
+          onClick={handleNextPage}
+          disabled={startIndex + pageSize >= raffleNumbers.length}
+        >
+          <Next />
+        </button>
+      </div>
+      <div className="mt-5 flex space-x-4">
+        <button
+          className="bg-[#2E3844] text-white p-2 rounded-lg"
+          onClick={handleAddRandomNumber}
+        >
+          Número Aleatorio
+        </button>
+        {selectedRaffles.length > 0 && (
+          <button
+            className="bg-red-500 text-white p-2 rounded-lg"
+            onClick={handleClearSelection}
+          >
+            Limpiar
+          </button>
+        )}
+      </div>
+
       {selectedRaffles.length > 0 && (
         <>
           <EpaycoCheckout
@@ -89,19 +167,34 @@ const Raffle = ({ price, nombre }) => {
             valueRaffle={selectedRaffles.join(", ")} // Muestra los números seleccionados
             price={price * selectedRaffles.length} // Calcular el monto total
             handlePayment={handlePayment}
+            nombre={nombre}
+            imagen={imagen}
           />
         </>
       )}
-      <ul>
-        {countries
-          .filter((country) => country.nombre_sorteo === nombre)
-          .map((country) => (
-            <li key={country.id}>{country.numero}</li>
-          ))}
-      </ul>
 
-      <p>numeros seleccionados: {selectedRaffles.join(", ")}</p>
-      <button onClick={onOpen}>Pagar</button>
+      <section className="mt-5 mb-10">
+        {selectedRaffles.length === 0 ? (
+          <p className="font-raleway-black">Escoga un numero</p>
+        ) : (
+          <>
+            <div className="flex flex-col justify-center items-center">
+              <p className="font-raleway-black text-2xl">
+                Números seleccionados
+              </p>
+              <p className="p-1 mt-2 px-3 rounded-lg bg-transparent border-2 border-green-500">
+                {selectedRaffles.join(", ")}
+              </p>
+              <button
+                className="mt-2 bg-[#2E3844] p-1 px-3 rounded-lg text-white"
+                onClick={onOpen}
+              >
+                Confirme sus numeros
+              </button>
+            </div>
+          </>
+        )}
+      </section>
     </>
   );
 };

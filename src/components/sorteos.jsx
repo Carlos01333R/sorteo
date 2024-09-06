@@ -5,13 +5,13 @@ export default function Sorteos() {
   const { sorteos } = ApiSorteo();
   return (
     <>
-      <section className="w-full h-auto flex  items-center justify-center gap-2">
+      <section className="w-full h-auto flex flex-col md:flex-row  items-center justify-center gap-2">
         {sorteos.map((sorteo) => (
           <article
             key={sorteo.id}
             className="flex flex-col justify-between items-center  w-full md:w-[500px] h-[550px]  mt-10 shadow-xl"
           >
-            <div className="w-full h-12 bg-red-600  flex justify-center items-center">
+            <div className="w-full h-12 bg-[#2E3844] flex justify-center items-center">
               <h2 className="w-[90%] text-white">No Edicion {sorteo.id}</h2>
             </div>
             <div className="w-full">
@@ -37,8 +37,8 @@ export default function Sorteos() {
                 {sorteo.precio}
               </section>
               <Link to={`/sorteoDetal/${sorteo.id}`}>
-                <button className="mt-2 bg-blue-500 text-white p-2 rounded-lg">
-                  Ver detalles
+                <button className="mt-2 bg-[#2E3844] text-white p-2 rounded-lg">
+                  Comprar
                 </button>
               </Link>
             </div>
