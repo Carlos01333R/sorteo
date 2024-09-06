@@ -37,6 +37,7 @@ export default function SorteoDetal() {
             price={sorteo.precio}
             nombre={sorteo.nombre}
             imagen={sorteo.imagen}
+            description={sorteo.description}
           />
         </section>
       </main>

@@ -86,6 +86,14 @@ const PaymentDetails = () => {
             <strong>ID de Transacción:</strong>{" "}
             {paymentDetails.x_transaction_id}
           </p>
+          <img src={paymentDetails.x_extra2} alt="Imagen del Sorteo" />
+          <p>
+            <strong>Nombre del Sorteo:</strong> {paymentDetails.x_extra1}
+          </p>
+          <p>
+            <strong>Descripción:</strong> {paymentDetails.x_extra3}
+          </p>
+
           <p>
             <strong>Fecha:</strong> {paymentDetails.x_fecha_transaccion}
           </p>

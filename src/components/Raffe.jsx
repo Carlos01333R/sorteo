@@ -7,7 +7,7 @@ import Next from "./icon/IconNext";
 import EpaycoCheckout from "./WebCheckout";
 import Api from "../hook/Api";
 
-const Raffle = ({ price, nombre, imagen }) => {
+const Raffle = ({ price, nombre, imagen, description }) => {
   const [selectedRaffles, setSelectedRaffles] = useState([]); // Estado para almacenar múltiples números seleccionados
   const { countries } = Api(); // Datos que vienen de la API
   const { isOpen, onOpen, onOpenChange } = useDisclosure();
@@ -56,6 +56,8 @@ const Raffle = ({ price, nombre, imagen }) => {
       currency: "COP",
       country: "CO",
       extra1: nombre,
+      extra2: imagen,
+      extra3: description,
       lang: "es",
       responseUrl: "https://sorteopy.vercel.app/response", // Agrega el nombre del sorteo aquí
       confirmationUrl: "http://yourwebsite.com/error", // Cambiar a la URL de error correcta
@@ -108,7 +110,7 @@ const Raffle = ({ price, nombre, imagen }) => {
         <h2 className="font-raleway-black text-3xl">Escoge tu Numero</h2>
         <p>Puedes escoger uno o mas numeros</p>
       </section>
-      <div className="grid grid-cols-7 gap-2 mt-10">
+      <div className="grid grid-cols-4 md:grid-cols-7 gap-2 mt-10">
         {currentNumbers.map((number) => (
           <Button
             onPress={() => handleSelectNumber(number)} // Utilizar la función para actualizar el estado
@@ -139,7 +141,7 @@ const Raffle = ({ price, nombre, imagen }) => {
           onClick={handleNextPage}
           disabled={startIndex + pageSize >= raffleNumbers.length}
         >
-          <Next />
+          <Next width={24} height={24} />
         </button>
       </div>
       <div className="mt-5 flex space-x-4">
@@ -186,7 +188,7 @@ const Raffle = ({ price, nombre, imagen }) => {
                 {selectedRaffles.join(", ")}
               </p>
               <button
-                className="mt-2 bg-[#2E3844] p-1 px-3 rounded-lg text-white"
+                className="mt-2 bg-[#2E3844] p-3 px-3 rounded-lg text-white"
                 onClick={onOpen}
               >
                 Confirme sus numeros
