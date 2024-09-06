@@ -119,7 +119,7 @@ const PaymentDetails = () => {
             </section>
             <section className="w-full justify-center items-center flex flex-col gap-2 mt-5">
               <article className="w-[95%] md:w-[40%] border-2 border-black bg-transparent  rounded-lg p-3 flex flex-col  justify-center items-center mb-20">
-                <div className="flex flex-col justify-start items-start gap-2 w-full truncate">
+                <div className="flex flex-col justify-start items-start gap-2 w-full ">
                   <p className="font-raleway-regular">
                     Detalles del Pago:{" "}
                     <span className="font-raleway-black ">{refPayco}</span>
