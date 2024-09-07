@@ -19,7 +19,7 @@ const EpaycoCheckout = ({
 }) => {
   return (
     <Modal
-      backdrop="opaque"
+      backdrop="blur"
       isOpen={isOpen}
       onOpenChange={onOpenChange}
       classNames={{
