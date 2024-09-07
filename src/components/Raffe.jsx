@@ -175,7 +175,7 @@ const Raffle = ({ price, nombre, imagen, description }) => {
         </>
       )}
 
-      <section className="mt-5 mb-10">
+      <section className="mt-5 mb-20">
         {selectedRaffles.length === 0 ? (
           <p className="font-raleway-black">Escoga un numero</p>
         ) : (

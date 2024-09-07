@@ -2,6 +2,8 @@
 import Raffle from "../components/Raffe";
 import Header from "../components/Header";
 import Hero from "../components/Hero";
+import Time from "../components/time";
+import Footer from "../components/Footer";
 import { useParams } from "react-router-dom";
 import ApiSorteo from "../hook/Apisorteo";
 
@@ -15,11 +17,16 @@ export default function SorteoDetal() {
 
   // Verifica si se encontró el sorteo
   if (FIlterIdSorteo.length === 0) {
-    return <p>No se encontró el sorteo con el ID proporcionado.</p>;
+    return (
+      <p className="text-center">
+        No se encontró el sorteo con el ID proporcionado.
+      </p>
+    );
   }
 
   // Dado que estás filtrando, FIlterIdSorteo es un array, toma el primer elemento
   const sorteo = FIlterIdSorteo[0];
+  console.log(sorteo.fecha);
 
   return (
     <>
@@ -33,6 +40,11 @@ export default function SorteoDetal() {
             imagen={sorteo.imagen}
             description={sorteo.description}
           />
+
+          {sorteo && (
+            <Time time={sorteo.fecha} numero={sorteo.numero_ganador} />
+          )}
+
           <Raffle
             price={sorteo.precio}
             nombre={sorteo.nombre}
@@ -41,6 +53,7 @@ export default function SorteoDetal() {
           />
         </section>
       </main>
+      <Footer />
     </>
   );
 }

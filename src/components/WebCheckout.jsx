@@ -8,6 +8,15 @@ import {
   Button,
 } from "@nextui-org/react";
 
+// Función para formatear a pesos colombianos
+const formatCurrency = (amount) => {
+  return new Intl.NumberFormat("es-CO", {
+    style: "currency",
+    currency: "COP",
+    minimumFractionDigits: 0,
+  }).format(amount);
+};
+
 const EpaycoCheckout = ({
   isOpen,
   onOpenChange,
@@ -18,15 +27,7 @@ const EpaycoCheckout = ({
   imagen,
 }) => {
   return (
-    <Modal
-      backdrop="blur"
-      isOpen={isOpen}
-      onOpenChange={onOpenChange}
-      classNames={{
-        backdrop:
-          "bg-gradient-to-t from-zinc-900 to-zinc-900/10 backdrop-opacity-20",
-      }}
-    >
+    <Modal backdrop="blur" isOpen={isOpen} onOpenChange={onOpenChange}>
       <ModalContent>
         {(onClose) => (
           <>
@@ -38,7 +39,7 @@ const EpaycoCheckout = ({
 
                 <img src={imagen} alt="" />
                 <h2 className="font-raleway-black text-center">
-                  Tus numeros a participar
+                  Tus números a participar
                 </h2>
                 <p className="p-2 px-5 bg-transparent border-2 border-green-500 rounded-lg">
                   {valueRaffle}
@@ -47,13 +48,13 @@ const EpaycoCheckout = ({
             </ModalBody>
             <ModalFooter>
               <Button
-                color="primary"
+                className="bg-[#2E3844] text-white p-2 rounded-lg"
                 onPress={() => {
                   onClose();
                   handlePayment();
                 }}
               >
-                Pagar: {price}
+                Pagar: {formatCurrency(price)}
               </Button>
               <Button color="danger" variant="light" onPress={onClose}>
                 Cerrar
