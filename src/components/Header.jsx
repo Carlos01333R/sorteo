@@ -50,8 +50,9 @@ export default function Header() {
             </li>
             <li className="hidden md:block gap-x-2">
               <a
+                target="_blank"
                 className="flex justify-center items-center border-2 border-[rgb(255,255,255)] rounded-lg px-2 cursor-pointer hover:scale-105 transition-transform duration-300 gap-1"
-                href="#sobreMi"
+                href="https://dashboard-sorteo.vercel.app/dashboard"
               >
                 Login <Next width={20} height={20} />
               </a>
@@ -100,8 +101,9 @@ export default function Header() {
               </li>
               <li className=" gap-x-2">
                 <a
+                  target="_blank"
                   className="flex justify-center items-center border-2 border-[#fff] rounded-lg p-2 cursor-pointer hover:scale-105 transition-all duration-300 gap-1"
-                  href="#sobreMi"
+                  href="https://dashboard-sorteo.vercel.app/dashboard"
                 >
                   Login <Next width={20} height={20} />
                 </a>
