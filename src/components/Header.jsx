@@ -27,7 +27,7 @@ export default function Header() {
     <>
       <header className="fixed top-0 left-0 w-full flex justify-center items-center z-50 m-auto">
         <nav
-          className={`font-raleway-medium text-sm md:text-normal w-full md:max-w-[1300px] flex justify-between truncate border-2 border-gray-200 rounded-xl p-1 py-3 transition-all duration-300 text-black m-auto z-50 ${
+          className={`font-raleway-medium text-sm md:text-normal w-full md:max-w-[1350px] flex justify-between truncate border-2 border-gray-200 rounded-xl p-1 py-3 transition-all duration-300 text-black m-auto z-50 ${
             isScrolled ? "bg-[#2E3844] backdrop-blur-md text-white" : ""
           } ${showMenu ? "hidden md:block" : ""}`}
         >
@@ -40,7 +40,7 @@ export default function Header() {
               <Link to="/">Home</Link>
             </li>
             <li className="hidden md:block gap-x-2">
-              <a href="#proyect">Como jugar</a>
+              <Link to="/comoJugar">Como jugar</Link>
             </li>
             <li className="hidden md:block gap-x-2">
               <a href="#sobreMi">Sorteos activos</a>
@@ -91,7 +91,7 @@ export default function Header() {
                 <Link to="/">Home</Link>
               </li>
               <li className=" gap-x-2">
-                <a href="#proyect">Como jugar</a>
+                <Link to="/comoJugar">Como jugar</Link>
               </li>
               <li className=" gap-x-2">
                 <a href="#sobreMi">Sorteos activos</a>

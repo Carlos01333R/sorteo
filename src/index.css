@@ -17,6 +17,32 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
+body {
+  --sb-track-color: #ffffff;
+  --sb-thumb-color: rgb(46, 46, 46);
+  --sb-size: 3px;
+}
+
+body::-webkit-scrollbar {
+  width: var(--sb-size);
+}
+
+body::-webkit-scrollbar-track {
+  background: var(--sb-track-color);
+  border-radius: 10px;
+}
+
+body::-webkit-scrollbar-thumb {
+  background: var(--sb-thumb-color);
+  border-radius: 10px;
+}
+
+@supports not selector(::-webkit-scrollbar) {
+  body {
+    scrollbar-color: var(--sb-thumb-color) var(--sb-track-color);
+  }
+}
+
 @font-face {
   font-family: "Raleway-Black";
   src: url("/src/assets/fonts/Raleway-Black.ttf") format("truetype");

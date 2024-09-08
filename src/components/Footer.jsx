@@ -8,7 +8,7 @@ export default function Footer() {
   return (
     <>
       {" "}
-      <section className="rotate-180 w-full ">
+      <section className="rotate-180 w-full relative top-2">
         <Shapedividers />
       </section>
       <footer className="w-full  h-auto   m-auto bg-[#2E3844]  text-white z-40">

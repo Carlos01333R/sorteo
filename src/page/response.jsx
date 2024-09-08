@@ -58,12 +58,13 @@ const PaymentDetails = () => {
   const savePaymentDetails = async (details) => {
     const { error } = await supabase.from("sorteos").insert([
       {
-        id: details.x_transaction_id,
+        id: details.x_ref_payco,
         fecha: details.x_fecha_transaccion,
         estado: details.x_respuesta,
+        nombre_cliente: details.x_business,
         nombre_sorteo: details.x_extra1,
         monto: details.x_amount,
-        targeta: details.x_cardnumber,
+        targeta: details.x_bank_name,
         numero: details.x_description,
         email: details.x_customer_email,
       },

@@ -13,7 +13,6 @@ export default function SorteoDetal() {
 
   // Asegúrate de convertir 'id' a un número si los IDs de 'sorteos' son números
   const FIlterIdSorteo = sorteos.filter((sorteo) => sorteo.id === Number(id));
-  console.log(FIlterIdSorteo);
 
   // Verifica si se encontró el sorteo
   if (FIlterIdSorteo.length === 0) {
@@ -26,7 +25,6 @@ export default function SorteoDetal() {
 
   // Dado que estás filtrando, FIlterIdSorteo es un array, toma el primer elemento
   const sorteo = FIlterIdSorteo[0];
-  console.log(sorteo.fecha);
 
   return (
     <>
