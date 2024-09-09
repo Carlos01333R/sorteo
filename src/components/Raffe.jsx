@@ -7,7 +7,7 @@ import Next from "./icon/IconNext";
 import EpaycoCheckout from "./WebCheckout";
 import Api from "../hook/Api";
 
-const Raffle = ({ price, nombre, imagen, description, boletos, codigo }) => {
+const Raffle = ({ price, nombre, imagen, description, boletos }) => {
   const [selectedRaffles, setSelectedRaffles] = useState([]); // Estado para almacenar múltiples números seleccionados
   const { countries } = Api(); // Datos que vienen de la API
   const { isOpen, onOpen, onOpenChange } = useDisclosure();
@@ -58,7 +58,6 @@ const Raffle = ({ price, nombre, imagen, description, boletos, codigo }) => {
       extra1: nombre,
       extra2: imagen,
       extra3: description,
-      extra4: codigo,
       lang: "es",
       responseUrl: "https://sorteopy.vercel.app/response", // Agrega el nombre del sorteo aquí
       confirmationUrl: "https://sorteopy.vercel.app/response", // Cambiar a la URL de error correcta
@@ -67,7 +66,7 @@ const Raffle = ({ price, nombre, imagen, description, boletos, codigo }) => {
 
     epayco.checkout.configure({
       key: data.key,
-      test: true,
+      test: false,
     });
 
     epayco.checkout.open(data);
