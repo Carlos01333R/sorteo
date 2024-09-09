@@ -6,6 +6,7 @@ import Time from "../components/time";
 import Footer from "../components/Footer";
 import { useParams } from "react-router-dom";
 import ApiSorteo from "../hook/Apisorteo";
+import Spliner from "../components/Spliner";
 
 export default function SorteoDetal() {
   const { sorteos } = ApiSorteo();
@@ -17,9 +18,9 @@ export default function SorteoDetal() {
   // Verifica si se encontró el sorteo
   if (FIlterIdSorteo.length === 0) {
     return (
-      <p className="text-center">
-        No se encontró el sorteo con el ID proporcionado.
-      </p>
+      <section className="mt-10">
+        <Spliner title="El sorteo" />
+      </section>
     );
   }
 
