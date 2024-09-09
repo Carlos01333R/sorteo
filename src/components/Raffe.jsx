@@ -7,7 +7,7 @@ import Next from "./icon/IconNext";
 import EpaycoCheckout from "./WebCheckout";
 import Api from "../hook/Api";
 
-const Raffle = ({ price, nombre, imagen, description }) => {
+const Raffle = ({ price, nombre, imagen, description, boletos }) => {
   const [selectedRaffles, setSelectedRaffles] = useState([]); // Estado para almacenar múltiples números seleccionados
   const { countries } = Api(); // Datos que vienen de la API
   const { isOpen, onOpen, onOpenChange } = useDisclosure();
@@ -22,7 +22,7 @@ const Raffle = ({ price, nombre, imagen, description }) => {
     ); // Convertir los números a formato de 3 dígitos, manejando múltiples números
 
   // Generar el array de números del 001 al 100, excluyendo los que ya están en occupiedNumbers
-  const raffleNumbers = Array.from({ length: 100 }, (_, index) => {
+  const raffleNumbers = Array.from({ length: boletos }, (_, index) => {
     return String(index + 1).padStart(3, "0");
   }).filter((number) => !occupiedNumbers.includes(number)); // Excluir los números ocupados
 

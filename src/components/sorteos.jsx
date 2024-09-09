@@ -21,7 +21,7 @@ export default function Sorteos() {
           <Spliner title="Sorteos" />
         </section>
       )}
-      <section className="w-full h-auto grid grid-cols-1 md:grid-cols-2 items-center justify-center gap-2 md:max-w-[1300px] m-auto">
+      <section className="w-full h-auto grid grid-cols-1 md:grid-cols-2 items-center justify-center gap-2 md:max-w-[1300px] m-auto mb-32">
         {!loading &&
           sorteos.map((sorteo) => (
             <article
@@ -55,7 +55,7 @@ export default function Sorteos() {
                     {formatCurrency(sorteo.precio)}
                   </p>
                 </section>
-                <Link to={`/sorteoDetal/${sorteo.id}`}>
+                <Link to={`/sorteo/${sorteo.id}`}>
                   <button className="mt-2 bg-[#2E3844] text-white p-2 rounded-lg">
                     Comprar
                   </button>

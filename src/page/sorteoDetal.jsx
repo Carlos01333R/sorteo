@@ -26,6 +26,10 @@ export default function SorteoDetal() {
   // Dado que estás filtrando, FIlterIdSorteo es un array, toma el primer elemento
   const sorteo = FIlterIdSorteo[0];
 
+  // Convertir sorteo.fecha a un objeto Date
+  const sorteoFecha = new Date(sorteo.fecha);
+  const fechaActual = new Date(); // Fecha actual
+
   return (
     <>
       <header className="w-full mb-20">
@@ -43,12 +47,16 @@ export default function SorteoDetal() {
             <Time time={sorteo.fecha} numero={sorteo.numero_ganador} />
           )}
 
-          <Raffle
-            price={sorteo.precio}
-            nombre={sorteo.nombre}
-            imagen={sorteo.imagen}
-            description={sorteo.description}
-          />
+          {/* Mostrar <Raffle> solo si la fecha actual es menor o igual a la fecha del sorteo */}
+          {fechaActual <= sorteoFecha && (
+            <Raffle
+              price={sorteo.precio}
+              nombre={sorteo.nombre}
+              imagen={sorteo.imagen}
+              description={sorteo.description}
+              boletos={sorteo.boletos}
+            />
+          )}
         </section>
       </main>
       <Footer />

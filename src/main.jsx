@@ -18,7 +18,7 @@ const router = createBrowserRouter([
     element: <PaymentDetails />,
   },
   {
-    path: "/sorteoDetal/:id",
+    path: "/sorteo/:id",
     element: <SorteoDetal />,
   },
   {
