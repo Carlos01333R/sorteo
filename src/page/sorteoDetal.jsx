@@ -11,6 +11,8 @@ import Spliner from "../components/Spliner";
 export default function SorteoDetal() {
   const { sorteos } = ApiSorteo();
   const { id } = useParams();
+  const queryParams = new URLSearchParams(location.search);
+  const refPayco = queryParams.get("ref_payco");
 
   // Asegúrate de convertir 'id' a un número si los IDs de 'sorteos' son números
   const FIlterIdSorteo = sorteos.filter((sorteo) => sorteo.id === Number(id));
@@ -56,6 +58,7 @@ export default function SorteoDetal() {
               imagen={sorteo.imagen}
               description={sorteo.description}
               boletos={sorteo.boletos}
+              codigo={refPayco}
             />
           )}
         </section>
