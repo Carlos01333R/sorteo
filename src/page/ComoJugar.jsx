@@ -1,5 +1,6 @@
 import Header from "../components/Header";
 import Footer from "../components/Footer";
+import { Image } from "@nextui-org/react";
 
 export default function ComoJugar() {
   return (
@@ -14,7 +15,7 @@ export default function ComoJugar() {
             <p className="font-raleway-black text-center  w-[300px]">
               Escoge el sorteo que quieres participar
             </p>
-            <img src="/paso1.png" alt="paso1" />
+            <Image src="/paso1.png" alt="paso1" />
           </div>
         </section>
         <section className="flex justify-center item-center m-auto ">
