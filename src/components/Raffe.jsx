@@ -66,7 +66,7 @@ const Raffle = ({ price, nombre, imagen, description }) => {
 
     epayco.checkout.configure({
       key: data.key,
-      test: true,
+      test: false,
     });
 
     epayco.checkout.open(data);
