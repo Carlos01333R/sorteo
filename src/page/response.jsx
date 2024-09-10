@@ -67,6 +67,7 @@ const PaymentDetails = () => {
         targeta: details.x_bank_name,
         numero: details.x_description,
         email: details.x_customer_email,
+        ref_usuario: details.x_extra4,
       },
     ]);
 

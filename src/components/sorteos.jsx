@@ -1,6 +1,7 @@
 import ApiSorteo from "../hook/Apisorteo";
 import Spliner from "./Spliner";
 import { Link } from "react-router-dom";
+import { Button } from "@nextui-org/react";
 
 export default function Sorteos() {
   const { sorteos, loading } = ApiSorteo();
@@ -21,49 +22,78 @@ export default function Sorteos() {
           <Spliner title="Sorteos" />
         </section>
       )}
-      <section className="w-full h-auto grid grid-cols-1 md:grid-cols-2 items-center justify-center gap-2 md:max-w-[1300px] m-auto mb-32">
-        {!loading &&
-          sorteos.map((sorteo) => (
-            <article
-              key={sorteo.id}
-              className="flex flex-col justify-between items-center w-full md:w-[550px] h-[550px] mt-10 shadow-xl m-auto"
-            >
-              <div className="w-full h-12 bg-[#2E3844] flex justify-center items-center">
-                <h2 className="w-[90%] text-white">No Edición {sorteo.id}</h2>
+
+      {!loading && (
+        <section className="w-full flex justify-center items-center mb-6">
+          <img
+            className="w-32 h-32 object-cover"
+            src="/sorteo.png"
+            alt="imagen"
+          />
+        </section>
+      )}
+      <article className="w-full flex justify-center items-center">
+        <div className="w-full grid grid-cols-1 gap-3 p-4 md:grid-cols-3 justify-items-center">
+          {!loading &&
+            sorteos.map((sorteo) => (
+              <div
+                key={sorteo.id}
+                className="max-w-md overflow-hidden bg-gradient-to-br from-gray-900 to-gray-800 text-white shadow-xl rounded-lg"
+              >
+                <div className="bg-black bg-opacity-60 p-6">
+                  <h2 className="text-2xl font-bold">
+                    Edición Sorteo {sorteo.id}
+                  </h2>
+                </div>
+                <div className="p-6">
+                  <div className="relative mb-6 overflow-hidden rounded-lg">
+                    <img
+                      alt="BMW Motorcycle"
+                      className="w-full transition-transform duration-300 ease-in-out hover:scale-105"
+                      height="200"
+                      src={sorteo.imagen}
+                      style={{
+                        aspectRatio: "400/200",
+                        objectFit: "cover",
+                      }}
+                      width="400"
+                    />
+                    <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black to-transparent p-4">
+                      <h3 className="text-2xl font-bold truncate">
+                        {sorteo.nombre}
+                      </h3>
+                    </div>
+                  </div>
+                  <div className="mb-4 flex justify-between">
+                    <div>
+                      <p className="text-sm text-gray-400">Valor Total</p>
+                      <p className="text-2xl font-bold">
+                        {formatCurrency(sorteo.valor)}
+                      </p>
+                    </div>
+                    <div className="text-right">
+                      <p className="text-sm text-gray-400">Boletos</p>
+                      <p className="text-2xl font-bold">{sorteo.boletos}</p>
+                    </div>
+                  </div>
+                  <div className="mb-6">
+                    <p className="text-sm text-gray-400">Precio por Boleto</p>
+                    <p className="text-3xl font-bold text-yellow-400">
+                      {formatCurrency(sorteo.precio)}
+                    </p>
+                  </div>
+                </div>
+                <div className="bg-black bg-opacity-60 p-6">
+                  <Link to={`/sorteo/${sorteo.id}`}>
+                    <Button className="w-full bg-yellow-400 text-black hover:bg-yellow-500">
+                      Comprar Ahora
+                    </Button>
+                  </Link>
+                </div>
               </div>
-              <div className="w-full">
-                <img src={sorteo.imagen} alt="imagen" />
-              </div>
-              <div className="flex w-[90%] justify-between items-center">
-                <p className="mt-2 w-[40%] font-raleway-black text-xl">
-                  {sorteo.nombre}
-                </p>
-                <p className="font-raleway-black text-lg mt-2">
-                  {sorteo.boletos} Boletos
-                </p>
-              </div>
-              <div className="flex w-[90%] justify-between items-center">
-                <p className="mt-2">Con valor de:</p>
-                <p className="font-raleway-black text-lg mt-2">
-                  {formatCurrency(sorteo.valor)}
-                </p>
-              </div>
-              <div className="flex w-[90%] justify-between items-center mb-2">
-                <section>
-                  <p className="mt-2">Precio del Boleto</p>
-                  <p className="font-raleway-black text-lg">
-                    {formatCurrency(sorteo.precio)}
-                  </p>
-                </section>
-                <Link to={`/sorteo/${sorteo.id}`}>
-                  <button className="mt-2 bg-[#2E3844] text-white p-2 rounded-lg">
-                    Comprar
-                  </button>
-                </Link>
-              </div>
-            </article>
-          ))}
-      </section>
+            ))}
+        </div>
+      </article>
     </>
   );
 }
