@@ -195,10 +195,9 @@ const PaymentDetails = () => {
                     </span>
                   </p>
                   <p className="font-raleway-regular">
-                    Cliente:
+                    Codigo de asesor:
                     <span className="font-raleway-black ml-2">
-                      {paymentDetails.x_customer_lastname}{" "}
-                      {paymentDetails.x_customer_lastname}
+                      {paymentDetails.x_extra4}{" "}
                     </span>
                   </p>
                   <p className="font-raleway-regular">
