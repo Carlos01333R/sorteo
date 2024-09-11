@@ -64,18 +64,7 @@ export default function Sorteos() {
                       </h3>
                     </div>
                   </div>
-                  <div className="mb-4 flex justify-between">
-                    <div>
-                      <p className="text-sm text-gray-400">Valor Total</p>
-                      <p className="text-2xl font-bold">
-                        {formatCurrency(sorteo.valor)}
-                      </p>
-                    </div>
-                    <div className="text-right">
-                      <p className="text-sm text-gray-400">Boletos</p>
-                      <p className="text-2xl font-bold">{sorteo.boletos}</p>
-                    </div>
-                  </div>
+
                   <div className="mb-6">
                     <p className="text-sm text-gray-400">Precio por Boleto</p>
                     <p className="text-3xl font-bold text-yellow-400">

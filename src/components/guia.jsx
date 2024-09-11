@@ -27,7 +27,7 @@ export default function Guia() {
                 experiencia de sorteo en línea!
               </p>
               <Link to="/comoJugar">
-                <button className="bg-[#2E3844] text-white p-2 rounded-lg py-3 px-5 mt-5 w-[150px] hover:bg-[#414b57] hover:scale-105 transition-all duration-300">
+                <button className="bg-yellow-400 text-white p-2 rounded-lg py-3 px-5 mt-5 w-[150px] hover:bg-yellow-300 hover:scale-105 transition-all duration-300">
                   Como jugar
                 </button>
               </Link>

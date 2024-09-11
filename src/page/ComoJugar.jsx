@@ -1,8 +1,13 @@
 import Header from "../components/Header";
 import Footer from "../components/Footer";
 import { Image } from "@nextui-org/react";
+import { useEffect } from "react";
 
 export default function ComoJugar() {
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+
   return (
     <>
       <header className="w-full">
@@ -24,7 +29,7 @@ export default function ComoJugar() {
             <p className="font-raleway-black text-center w-[300px]">
               Escoge el boleto o los boletos que quieres participar
             </p>
-            <video src="/paso2.webm" autoPlay loop poster="/paso1.png">
+            <video src="/paso2.mp4" autoPlay loop poster="/paso1.png">
               Tu navegador no admite el elemento <code>video</code>.
             </video>
           </div>

@@ -32,7 +32,7 @@ export default function Header() {
           } ${showMenu ? "hidden md:block" : ""}`}
         >
           <Link to="/">
-            <img src="" alt="Logo" />
+            <img className="w-16 h-10 ml-5" src="/logo.png" alt="Logo" />
           </Link>
 
           <ul className="flex gap-x-3 md:gap-x-5 justify-center items-center ml-5 mr-5">
@@ -43,10 +43,10 @@ export default function Header() {
               <Link to="/comoJugar">Como jugar</Link>
             </li>
             <li className="hidden md:block gap-x-2">
-              <a href="#sobreMi">Sorteos activos</a>
+              <Link to="/preguntas">Preguntas frecuentes</Link>
             </li>
             <li className="hidden md:block gap-x-2">
-              <a href="#sobreMi">Contacto</a>
+              <a href="mailto:sorteos@carlos.dev">Contacto</a>
             </li>
             <li className="hidden md:block gap-x-2">
               <a
@@ -83,7 +83,7 @@ export default function Header() {
           </div>
           <section className="text-white flex flex-col justify-center items-center gap-2 p-5 mt-5">
             <Link to="/">
-              <img src="" alt="Logo" />
+              <img className="w-28 h-20 " src="/logo.png" alt="Logo" />
             </Link>
 
             <ul className="flex flex-col justify-start items-start gap-5 mt-5">
@@ -94,10 +94,10 @@ export default function Header() {
                 <Link to="/comoJugar">Como jugar</Link>
               </li>
               <li className=" gap-x-2">
-                <a href="#sobreMi">Sorteos activos</a>
+                <Link to="/preguntas">Preguntas frecuentes</Link>
               </li>
               <li className=" gap-x-2">
-                <a href="#sobreMi">Contacto</a>
+                <a href="mailto:sorteos@carlos.dev">Contacto</a>
               </li>
               <li className=" gap-x-2">
                 <a

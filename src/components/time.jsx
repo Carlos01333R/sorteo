@@ -35,7 +35,7 @@ export default function Time({ time, numero }) {
       <p className="font-raleway-black text-3xl text-center">
         Tiempo restante para el sorteo
       </p>
-      <h1 className="text-4xl font-raleway-black text-white bg-[#2E3844] rounded-full w-[90%]  md:w-full flex justify-center items-center py-4">
+      <h1 className="text-2xl md:text-4xl font-raleway-black text-white bg-[#2E3844] rounded-full w-[90%]  md:w-full flex justify-center items-center py-4">
         {timeRemaining}
       </h1>
 

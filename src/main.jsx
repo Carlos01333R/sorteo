@@ -5,6 +5,7 @@ import "./index.css";
 import PaymentDetails from "./page/response.jsx";
 import SorteoDetal from "./page/sorteoDetal.jsx";
 import ComoJugar from "./page/ComoJugar.jsx";
+import PreguntasFrecuentes from "./components/PreguntasFrecuentes.jsx";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import { NextUIProvider } from "@nextui-org/react";
 
@@ -24,6 +25,10 @@ const router = createBrowserRouter([
   {
     path: "/comoJugar",
     element: <ComoJugar />,
+  },
+  {
+    path: "/preguntas",
+    element: <PreguntasFrecuentes />,
   },
 ]);
 
