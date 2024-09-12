@@ -13,10 +13,10 @@ export default function Footer() {
       </section>
       <footer className="w-full  h-auto   m-auto bg-[#2E3844]  text-white z-40">
         <article className="flex flex-col md:flex-row w-full md:max-w-[1300px]  items-center justify-between gap-2 m-auto">
-          <section className="flex ml-5 mt-4">
+          <section className="flex ml-5 mt-4 justify-center items-center">
             <img
-              className="w-20 h-20 object-contain"
-              src="logo.png"
+              className="w-32 h-32 md:w-20 md:h-20 object-contain"
+              src="/logo2.png"
               alt="logo"
             />
           </section>

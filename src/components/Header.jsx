@@ -34,7 +34,7 @@ export default function Header() {
           <Link to="/">
             <img
               className="w-16 h-10 ml-5 object-contain"
-              src="/logo.png"
+              src={`${isScrolled ? "/logo2.png" : "/logo.png"}`}
               alt="Logo"
             />
           </Link>
@@ -87,7 +87,11 @@ export default function Header() {
           </div>
           <section className="text-white flex flex-col justify-center items-center gap-2 p-5 mt-5">
             <Link to="/">
-              <img className="w-28 h-20 " src="/logo.png" alt="Logo" />
+              <img
+                className="w-28 h-20 object-contain"
+                src="/logo2.png"
+                alt="Logo"
+              />
             </Link>
 
             <ul className="flex flex-col justify-start items-start gap-5 mt-5">
