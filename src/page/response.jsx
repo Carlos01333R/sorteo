@@ -54,6 +54,18 @@ const PaymentDetails = () => {
   }, [refPayco]); // Agrega `nombreSorteo` a las dependencias
 
   // Función para guardar los detalles del pago en la base de datos
+  const codeAsesor = (paymentDetails) => {
+    if (paymentDetails.x_extra4 === "123") {
+      return "carlos";
+    }
+    if (paymentDetails.x_extra4 === "456") {
+      return "felipe";
+    }
+    if (paymentDetails.x_extra4 === "789") {
+      return "andres";
+    }
+    return "";
+  };
 
   const savePaymentDetails = async (details) => {
     const { error } = await supabase.from("sorteos").insert([
@@ -67,7 +79,7 @@ const PaymentDetails = () => {
         targeta: details.x_bank_name,
         numero: details.x_description,
         email: details.x_customer_email,
-        ref_usuario: details.x_extra4,
+        ref_usuario: codeAsesor(details),
       },
     ]);
 
