@@ -52,12 +52,12 @@ export default function Sorteos() {
                       className="w-full transition-transform duration-300 ease-in-out hover:scale-105"
                       height="200"
                       src={sorteo.imagen}
-                      style={{
-                        aspectRatio: "400/200",
-                        objectFit: "cover",
-                      }}
                       width="400"
-                    />
+                      style={{
+                        aspectRatio: "400 / 200",
+                        objectFit: "cover;",
+                      }}
+                    ></img>
                     <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black to-transparent p-4">
                       <h3 className="text-2xl font-bold truncate">
                         {sorteo.nombre}

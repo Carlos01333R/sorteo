@@ -32,7 +32,11 @@ export default function Header() {
           } ${showMenu ? "hidden md:block" : ""}`}
         >
           <Link to="/">
-            <img className="w-16 h-10 ml-5" src="/logo.png" alt="Logo" />
+            <img
+              className="w-16 h-10 ml-5 object-contain"
+              src="/logo.png"
+              alt="Logo"
+            />
           </Link>
 
           <ul className="flex gap-x-3 md:gap-x-5 justify-center items-center ml-5 mr-5">

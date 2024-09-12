@@ -45,6 +45,7 @@ export default function Guia() {
           className="w-[95%] h-[300px] md:h-[400px] md:w-[45%] flex justify-center items-center rounded-lg"
         >
           <Button
+            name="boton play"
             onPress={onOpen}
             className="w-20 h-20 rounded-full bg-white hover:bg-blue-500 transition-colors duration-200 flex justify-center items-center"
           >

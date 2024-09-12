@@ -1,0 +1,20 @@
+# Bloquear carpetas específicas
+User-agent: *
+Disallow: /private/
+Disallow: /temp/
+
+# Bloquear bots específicos
+User-agent: BadBot
+Disallow: /
+
+# Permitir Google pero bloquear una carpeta específica
+User-agent: Googlebot
+Disallow: /no-google/
+
+# Permitir solo ciertas áreas a todos los demás bots
+User-agent: *
+Allow: /public/
+Disallow: /admin/
+
+# Incluir el sitemap del sitio
+Sitemap: https://tu-dominio.com/sitemap.xml

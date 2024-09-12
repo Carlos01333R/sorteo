@@ -14,7 +14,11 @@ export default function Footer() {
       <footer className="w-full  h-auto   m-auto bg-[#2E3844]  text-white z-40">
         <article className="flex flex-col md:flex-row w-full md:max-w-[1300px]  items-center justify-between gap-2 m-auto">
           <section className="flex ml-5 mt-4">
-            <img src="" alt="logo" />
+            <img
+              className="w-20 h-20 object-contain"
+              src="logo.png"
+              alt="logo"
+            />
           </section>
           <section className="flex w-[90%] md:w-[50%] mt-5 mb-5 ">
             <p>
@@ -41,13 +45,25 @@ export default function Footer() {
               </li>
             </ul>
             <section className="flex gap-5 w-full justify-center items-center mt-5">
-              <a href="https://www.facebook.com/" target="_blank">
+              <a
+                href="https://www.facebook.com/"
+                target="_blank"
+                aria-label="Facebook"
+              >
                 <IconFacebook />
               </a>
-              <a href="https://www.instagram.com/" target="_blank">
+              <a
+                href="https://www.instagram.com/"
+                target="_blank"
+                aria-label="Instagram"
+              >
                 <IconInstagram />
               </a>
-              <a href="https://twitter.com/" target="_blank">
+              <a
+                href="https://twitter.com/"
+                target="_blank"
+                aria-label="Twitter"
+              >
                 <IconLink />
               </a>
             </section>
