@@ -49,7 +49,7 @@ const Raffle = ({ price, nombre, imagen, description, boletos, codigo }) => {
 
     // Configuración de la transacción
     const data = {
-      key: "58a0150cf636cce288eabb215dfb5fa8", // Tu public_key de Epayco
+      key: "2a5742317f0bca04fecbeb0d887bf25d", // Tu public_key de Epayco
       name: nombre,
       description: selectedRaffles.join(", "), // Muestra los números seleccionados
       amount: price * selectedRaffles.length, // Calcula el monto total basado en la cantidad de números seleccionados
@@ -67,7 +67,7 @@ const Raffle = ({ price, nombre, imagen, description, boletos, codigo }) => {
 
     epayco.checkout.configure({
       key: data.key,
-      test: false,
+      test: true,
     });
 
     epayco.checkout.open(data);
